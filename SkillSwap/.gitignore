@@ -1,0 +1,22 @@
+# 🔹 Virtual environment
+env/
+
+# 🔹 Secret environment file
+.env
+
+# 🔹 Local SQLite DB (if still exists)
+db.sqlite3
+
+# 🔹 Python bytecode and cache
+__pycache__/
+*.py[cod]
+
+# 🔹 VS Code settings
+.vscode/
+
+# 🔹 Django migration caches (optional)
+**/migrations/*.pyc
+**/migrations/__pycache__/
+
+# 🔹 Logs or temporary files (optional)
+*.log

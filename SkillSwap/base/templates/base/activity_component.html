@@ -1,0 +1,13 @@
+<hr>
+{% for message in recent_messages %}
+<div>
+    <p><strong><a href="{% url 'profile' message.user.username %}">{{ message.user.username }}</a></strong>:
+        <span class="timestamp">{{ message.created|timesince }} ago</span>
+    </p>
+    <p>Replied to "<a href="{% url 'room' message.room.id %}">{{ message.room.name }}</a>"</p>
+    <p>{{ message.body }}</p>
+    <hr>
+</div>
+{% empty %}
+<p>No recent messages.</p>
+{% endfor %}

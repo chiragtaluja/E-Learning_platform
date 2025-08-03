@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+    <a href="/">
+        <h1>SkillSwap</h1>
+    </a>
+    <form action="{% url 'home' %}" method="GET">
+        <input type="text" name="q" placeholder="Search for a topic..." value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'profile' request.user.username %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login/Register</a>
+    {% endif %}
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'create-room' %}">Create Room</a></li>
+        </ul>
+    <hr>
+</body>
+</html>

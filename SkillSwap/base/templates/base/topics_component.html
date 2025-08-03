@@ -1,0 +1,18 @@
+<hr>
+<div>
+    <a href="{% url 'home' %}">All Topics</a>
+</div>
+<ul>
+    {% for topic in topics %}
+    <li>
+        <a href="{% url 'home' %}?q={{ topic.name }}">{{ topic.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+<div>
+    <form method="POST" action="{% url 'add_topics' %}">
+        {% csrf_token %}
+        <input type="text" name="topic_name" placeholder="Add a new topic" required>
+        <button type="submit">Add Topic</button>
+    </form>
+</div>

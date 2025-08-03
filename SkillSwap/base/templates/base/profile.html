@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .profile-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+</style>
+
+<div>
+    <h1>{{ profile_user.username }}'s Profile</h1>
+    <p>Joined: {{ profile_user.date_joined|date:"F j, Y" }}</p>
+    <p>Email: {{ profile_user.email }}</p>
+</div>
+
+<div class="profile-container">
+    <div>
+        <h3>Browse Topics</h3>
+        {% include "base/topics_component.html" %}
+    </div>
+    <div>
+        <h3>Your Rooms</h3>
+        {% include "base/feed_component.html" %}
+    </div>
+    <div>
+        <h3>Your Messages</h3>
+        {% include "base/activity_component.html" %}
+    </div>
+
+</div>
+{% endblock %}
