@@ -4,9 +4,6 @@ env/
 # 🔹 Secret environment file
 .env
 
-# 🔹 Local SQLite DB (if still exists)
-db.sqlite3
-
 # 🔹 Python bytecode and cache
 __pycache__/
 *.py[cod]
