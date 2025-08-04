@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Room, Topic, User, Message
-from .forms import RoomForm
+from .forms import RoomForm , UserForm
 from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -187,6 +187,7 @@ def profile(request, username):
     }
     return render(request, "base/profile.html", context)
 
+@login_required(login_url="/login")
 def add_topics(request):
     if request.method == "POST":
         topic_name = request.POST.get("topic_name")
@@ -199,3 +200,25 @@ def add_topics(request):
         else:
             messages.error(request, "Topic name cannot be empty.")
     return redirect("home")
+
+@login_required(login_url="/login")
+def update_user(request, username):
+    user = User.objects.get(username=username)
+    form = UserForm(instance=user)
+
+    if request.method == "POST":
+        form = UserForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect("profile", username=user.username)
+
+    context = {
+        "form": form,
+    }
+    return render(request, "base/update_user.html", context)
+
+def about_us(request):
+    return render(request, "base/about_us.html")
+
+def index(request):
+    return render(request, "base/index.html")

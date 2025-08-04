@@ -1,7 +1,16 @@
 {% extends "main.html" %}
 {% block content %}
 
+<div>
+    update user
 
+    <form method="POST" action="{% url 'update_user' user.username %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+    <a href="{% url 'profile' request.user.username %}">Back to Profile</a>
+</div>
 
 
 

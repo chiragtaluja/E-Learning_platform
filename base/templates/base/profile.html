@@ -12,7 +12,9 @@
     <h1>{{ profile_user.username }}'s Profile</h1>
     <p>Joined: {{ profile_user.date_joined|date:"F j, Y" }}</p>
     <p>Email: {{ profile_user.email }}</p>
-</div>
+    <p>First Name: {{ profile_user.first_name }}</p>
+    <p>Last Name: {{ profile_user.last_name }}</p>
+    <a href="{% url 'update_user' profile_user.username %}">Edit</a>
 
 <div class="profile-container">
     <div>
