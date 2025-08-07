@@ -16,4 +16,5 @@ urlpatterns = [
     path("update-user/<str:username>/", views.update_user, name="update_user"),  # Update user profile route
     path("about-us/", views.about_us, name="about_us"),  # About Us page route
     path("home/", views.home, name="home"),  # Home page route
+    path("contact-us/", views.contact_us, name="contact_us"),  # Contact Us page route
 ]

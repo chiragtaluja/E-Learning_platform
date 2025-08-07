@@ -2,33 +2,85 @@
 {% block content %}
 
 <style>
-    .profile-container {
-        display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
+    .profile-header {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .profile-card {
+        border: none;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+        border-radius: 1rem;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .profile-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+        font-weight: 600;
+        margin-bottom: 1.2rem;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 0.5rem;
+        text-align: center;
     }
 </style>
 
-<div>
-    <h1>{{ profile_user.username }}'s Profile</h1>
-    <p>Joined: {{ profile_user.date_joined|date:"F j, Y" }}</p>
-    <p>Email: {{ profile_user.email }}</p>
-    <p>First Name: {{ profile_user.first_name }}</p>
-    <p>Last Name: {{ profile_user.last_name }}</p>
-    <a href="{% url 'update_user' profile_user.username %}">Edit</a>
+<div class="container my-5">
+    <!-- Profile Header -->
+    <div class="profile-header text-center mb-5">
+        <h2 class="mb-2">{{ profile_user.username }}'s Profile</h2>
+        <p class="text-muted">Joined on {{ profile_user.date_joined|date:"F j, Y" }}</p>
 
-<div class="profile-container">
-    <div>
-        <h3>Browse Topics</h3>
-        {% include "base/topics_component.html" %}
-    </div>
-    <div>
-        <h3>Your Rooms</h3>
-        {% include "base/feed_component.html" %}
-    </div>
-    <div>
-        <h3>Your Messages</h3>
-        {% include "base/activity_component.html" %}
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <ul class="list-group list-group-flush text-start">
+                    <li class="list-group-item"><strong>Email:</strong> {{ profile_user.email }}</li>
+                    <li class="list-group-item"><strong>First Name:</strong> {{ profile_user.first_name }}</li>
+                    <li class="list-group-item"><strong>Last Name:</strong> {{ profile_user.last_name }}</li>
+                </ul>
+                <div class="text-center mt-3">
+                    <a href="{% url 'update_user' profile_user.username %}" class="btn btn-outline-dark">Edit
+                        Profile</a>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- Sections Grid -->
+    <div class="container py-4">
+
+        <div class="row g-4">
+            <!-- Topics Section -->
+            <div class="col-md-3">
+                <h4 class="mb-3 text-center">Browse Topics</h4>
+                <div class="p-2 border rounded bg-light shadow-sm">
+                    {% include 'base/topics_component.html' %}
+                </div>
+            </div>
+
+            <!-- Rooms Feed Section -->
+            <div class="col-md-6">
+                <h4 class="mb-3 text-center"> Your Rooms </h4>
+                <div class="p-2 border rounded bg-light shadow-sm">
+                    {% include 'base/feed_component.html' %}
+                </div>
+            </div>
+
+            <!-- Recent Activity Section -->
+            <div class="col-md-3">
+                <h4 class="mb-3 text-center">Your Activity</h4>
+                <div class="p-2 border rounded bg-light shadow-sm">
+                    {% include 'base/activity_component.html' %}
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
+
 {% endblock %}

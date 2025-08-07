@@ -1,0 +1,24 @@
+:root {
+    --bs-primary: #2D0072;
+    /* Replace with your logo's purple */
+}
+
+/* Optional: adjust other tones */
+a, .btn-link {
+    color: #2D0072;
+}
+
+a:hover, .btn-link:hover {
+    color: #1e0050;
+}
+
+.btn-outline-primary {
+    border-color: #2D0072;
+    color: #2D0072;
+}
+
+.btn-outline-primary:hover {
+    background-color: #2D0072;
+    color: white;
+    border-color: #2D0072;
+}

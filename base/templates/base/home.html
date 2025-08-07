@@ -1,28 +1,33 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<style>
-    .home-container {
-        display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
-    }
-</style>
+<div class="container py-4">
 
-<div class="home-container">
-    <div>
-        <h3>Browse Topics</h3>
-        {% include 'base/topics_component.html' %}
+    <div class="row g-4">
+        <!-- Topics Section -->
+        <div class="col-md-3">
+            <h4 class="mb-3 text-center">Browse Topics</h4>
+            <div class="p-2 border rounded bg-light shadow-sm">
+                {% include 'base/topics_component.html' %}
+            </div>
+        </div>
+
+        <!-- Rooms Feed Section -->
+        <div class="col-md-6">
+            <h4 class="mb-3 text-center">Rooms Available</h4>
+            <div class="p-2 border rounded bg-light shadow-sm">
+                {% include 'base/feed_component.html' %}
+            </div>
+        </div>
+
+        <!-- Recent Activity Section -->
+        <div class="col-md-3">
+            <h4 class="mb-3 text-center">Recent Activity</h4>
+            <div class="p-2 border rounded bg-light shadow-sm">
+                {% include 'base/activity_component.html' %}
+            </div>
+        </div>
     </div>
 
-    <div>
-        <h3>Rooms Available</h3>
-
-        {% include 'base/feed_component.html' %}
-    </div>
-
-    <div>
-        <h3>Recent Activity</h3>
-        {% include 'base/activity_component.html' %}
-    </div>
 </div>
 {% endblock content %}

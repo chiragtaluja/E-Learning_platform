@@ -1,10 +1,56 @@
 {% extends 'main.html' %}
-
+{% load widget_tweaks %}
 {% block content %}
-<form method="POST" >
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create Room</button>
-</form>
+
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 3rem auto;
+        background-color: #f8f9fa;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-title {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: 600;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 0.5rem;
+    }
+
+    .btn-submit {
+        width: 100%;
+        margin-top: 1rem;
+    }
+</style>
+
+<div class="form-container">
+    <h2 class="form-title">Create a New Room</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <!-- Render field by field for better control -->
+        <div class="mb-3">
+            <label for="topic" class="form-label">Topic</label>
+            {{ form.topic|add_class:"form-select" }}
+        </div>
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Room Name</label>
+            {{ form.name|add_class:"form-control" }}
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            {{ form.description|add_class:"form-control" }}
+        </div>
+
+        <button type="submit" class="btn btn-outline-dark btn-submit">Create Room</button>
+    </form>
+</div>
 
 {% endblock content %}

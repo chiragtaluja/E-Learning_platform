@@ -1,64 +1,90 @@
 {% extends "main.html" %}
-
 {% block content %}
 
-<body>
-
-    <div class="container">
-        <h1>About SkillSwap</h1>
-        <div class="section">
-            <h2>Welcome to SkillSwap – A Room-Based Knowledge Sharing Platform!</h2>
-            <p>SkillSwap is a space where learners and experts come together to exchange knowledge, ideas, and skills in
-                organized virtual rooms.</p>
-        </div>
-
-        <div class="section">
-            <h2>What is SkillSwap?</h2>
-            <p>SkillSwap allows users to create or join topic-based discussion rooms where they can ask questions, share
-                experiences, and learn from others. It’s designed to foster meaningful learning communities driven by
-                real-time engagement and mutual support.</p>
-        </div>
-
-        <div class="section">
-            <h2>Why I Built SkillSwap</h2>
-            <p>As a self-taught developer and lifelong learner, I often felt the need for a more collaborative learning
-                space. That’s what inspired me to build SkillSwap – a platform to make knowledge-sharing more
-                interactive, accessible, and community-driven.</p>
-        </div>
-
-        <div class="section">
-            <h2>Mission & Vision</h2>
-            <p><span class="highlight">Mission:</span> To connect curious minds and passionate mentors in real-time
-                rooms where learning thrives through sharing.</p>
-            <p><span class="highlight">Vision:</span> To create a global community where knowledge flows freely, and
-                every skill has a space to grow.</p>
-        </div>
-
-        <div class="section">
-            <h2>About the Developer</h2>
-            <p>I'm <strong>Chirag</strong>, a BCA student and tech enthusiast passionate about web development,
-                problem-solving, and building tools that empower learning. SkillSwap is a personal project that reflects
-                my commitment to collaborative education and open knowledge.</p>
-        </div>
-
-        <div class="section">
-            <h2>What’s Next</h2>
-            <p>SkillSwap is just getting started. I plan to add features like private rooms, scheduling, expert tagging,
-                and gamified learning paths. Feedback and collaboration are always welcome!</p>
-        </div>
-
-        <div class="section">
-            <h2>Get in Touch</h2>
-            <p>Want to collaborate, give feedback, or just say hi? <a href="mailto:your-email@example.com">Contact
-                    Me</a> or connect on
-                <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>,
-                <a href="https://github.com/yourusername" target="_blank">GitHub</a>.
-            </p>
-        </div>
+<div class="container py-5">
+    <!-- Page Title -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold display-5">About SkillSwap</h1>
+        <p class="lead text-muted">Connecting learners and mentors through virtual rooms of knowledge.</p>
     </div>
 
-</body>
+    <!-- Sections -->
+    <div class="row g-4">
+        <!-- Welcome -->
+        <div class="col-12">
+            <div class="card shadow-sm border-0 p-4">
+                <h2 class="h4 mb-3 text-primary">Welcome to SkillSwap</h2>
+                <p class="text-muted mb-0">SkillSwap is a space where learners and experts come together to exchange
+                    knowledge, ideas, and skills in organized virtual rooms.</p>
+            </div>
+        </div>
 
-</html>
+        <!-- What is SkillSwap -->
+        <div class="col-12 col-md-6">
+            <div class="card shadow-sm border-0 p-4 h-100">
+                <h2 class="h4 mb-3 text-primary">What is SkillSwap?</h2>
+                <p class="text-muted mb-0">Create or join topic-based discussion rooms to ask questions, share
+                    experiences, and learn collaboratively with others. It’s about building real-time learning
+                    communities.</p>
+            </div>
+        </div>
 
-{% endblock content %}
+        <!-- Why I Built -->
+        <div class="col-12 col-md-6">
+            <div class="card shadow-sm border-0 p-4 h-100">
+                <h2 class="h4 mb-3 text-primary">Why I Built SkillSwap</h2>
+                <p class="text-muted mb-0">As a self-taught developer, I craved a more collaborative space. SkillSwap is
+                    my solution — a platform that makes knowledge-sharing interactive and accessible.</p>
+            </div>
+        </div>
+
+        <!-- Mission & Vision -->
+        <div class="col-12">
+            <div class="card shadow-sm border-0 p-4">
+                <h2 class="h4 mb-3 text-primary">Mission & Vision</h2>
+                <p><span class="fw-semibold text-dark">Mission:</span> Connect curious minds in real-time rooms where
+                    learning thrives through sharing.</p>
+                <p><span class="fw-semibold text-dark">Vision:</span> Build a global community where knowledge flows
+                    freely and every skill finds its space to grow.</p>
+            </div>
+        </div>
+
+        <!-- About Developer -->
+        <div class="col-12 col-md-6">
+            <div class="card shadow-sm border-0 p-4 h-100">
+                <h2 class="h4 mb-3 text-primary">About the Developer</h2>
+                <p class="text-muted mb-0">I'm <strong>Chirag</strong>, a BCA student and tech enthusiast passionate
+                    about web development and problem-solving. SkillSwap reflects my vision of collaborative learning
+                    and open knowledge.</p>
+            </div>
+        </div>
+
+        <!-- What’s Next -->
+        <div class="col-12 col-md-6">
+            <div class="card shadow-sm border-0 p-4 h-100">
+                <h2 class="h4 mb-3 text-primary">What’s Next</h2>
+                <p class="text-muted mb-0">Upcoming features: private rooms, scheduling, expert tagging, and gamified
+                    learning paths. Your feedback and collaboration are always welcome!</p>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-12">
+            <div class="card shadow-sm border-0 p-4">
+                <h2 class="h4 mb-3 text-primary">Get in Touch</h2>
+                <p class="text-muted">Want to collaborate, give feedback, or just say hi?</p>
+                <ul class="list-unstyled">
+                    <li><a href="mailto:your-email@example.com" class="text-decoration-none">📧 Email Me</a></li>
+                </ul>
+                <div class="d-flex gap-2 mt-3">
+                    <a href="https://www.linkedin.com/in/yourprofile" class="btn btn-outline-primary btn-sm"
+                        target="_blank">LinkedIn</a>
+                    <a href="https://github.com/yourusername" class="btn btn-outline-dark btn-sm"
+                        target="_blank">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

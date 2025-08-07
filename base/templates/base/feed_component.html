@@ -1,17 +1,40 @@
-<hr>
-<h5>{{ rooms.count }} Rooms Available</h5>
-<div>
-    {% for room in rooms %}
-    <div>
-            {{ room.id }}-<a href="{% url 'room' room.id %}">{{ room.name }}</a>
-            <br>
-            <a href="{% url 'profile' room.host.username %}">@<span>{{room.host.username}}</span></a>
-            {% if request.user == room.host %}
-            <a href="{% url 'update-room' room.id %}">Update</a>
-            <a href="{% url 'delete-room' room.id %}">Delete Room</a>
-            {% else %}
+<h5 class="mb-4">{{ rooms.count }} Rooms Available</h5>
 
-            {% endif %}
+<div class="row g-3">
+    {% for room in rooms %}
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body d-flex flex-column justify-content-between">
+                <!-- Room Title -->
+                <h5 class="card-title mb-1">
+                    <span class="text-secondary small">#{{ room.id }}</span><br>
+                    <a href="{% url 'room' room.id %}" class="text-decoration-none text-dark fw-semibold">
+                        {{ room.name }}
+                    </a>
+                </h5>
+
+                <!-- Host Info -->
+                <p class="card-text text-muted mb-3 small">
+                    Hosted by <a href="{% url 'profile' room.host.username %}" class="text-decoration-none">@{{ room.host.username }}</a>
+                </p>
+
+                <!-- Buttons for host -->
+                {% if request.user == room.host %}
+                <div class="mt-auto">
+                    <a href="{% url 'update-room' room.id %}" class="btn btn-sm btn-outline-dark me-2">Update</a>
+                    <a href="{% url 'delete-room' room.id %}" class="btn btn-sm btn-outline-dark">Delete</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
     {% endfor %}
 </div>
+
+<style>
+    .list-group-item:hover {
+        background-color: #f8f9fa;
+        transition: background-color 0.2s ease-in-out;
+        border-radius: 5px;
+    }
+</style>
