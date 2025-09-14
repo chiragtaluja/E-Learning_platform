@@ -1,64 +1,76 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<style>
-    .room-container {
-        display: grid;
-        grid-template-columns: 3fr 1fr;
-    }
-</style>
-
-<div class="room-container">
-    <div>
-
-        <h1>{{room.name}}</h1>
-        <p>Hosted by: {{room.host.username}}</p>
-        <p>Description: {{room.description}}</p>
-
-        <div class="comment-wrapper">
-            <h3>Conversations</h3>
-            <hr>
-            {% for message in room_messages %}
-            <div class="message">
-                <p><strong>{{ message.user.username }}</strong>:</p>
-                <p>{{ message.body }}</p>
-                <p class="timestamp">{{ message.created|timesince }}</p>
-                {% if request.user == message.user %}
-                <form action="{% url 'delete-message-room' message.id %}" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="message_id" value="{{ message.id }}">
-                    <button type="submit">Delete</button>
-                </form>
-                {% endif %}
+<div class="container my-5">
+    <div class="row">
+        <!-- Left Column: Room Info and Messages -->
+        <div class="col-lg-8">
+            <!-- Room Header -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ room.name }}</h2>
+                    <p class="text-muted">Hosted by: <strong>{{ room.host.username }}</strong></p>
+                    <p class="mb-0">{{ room.description }}</p>
+                </div>
             </div>
-            {% empty %}
-            <p>No messages yet.</p>
-            {% endfor %}
-        </div>
-        <hr>
-        {% if user.is_authenticated %}
-        <div class="comment-form">
-            <form method="POST">
-                {% csrf_token %}
-                <input type="text" name="body" placeholder="Add your message..." required>
-                <button type="submit">Send</button>
-            </form>
-        </div>
-        {% else %}
-        {% endif %}
-    </div>
-    <div>
-        <h3>Participants</h3>
-        <ul>
-            {% for participant in participants %}
-            <div>
-                <li>@{{ participant.username }}</li>
+
+            <!-- Conversations Section -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h4 class="mb-3">Conversations</h4>
+                    <hr>
+                    {% for message in room_messages %}
+                        <div class="border rounded p-3 mb-3 bg-light">
+                            <p class="mb-1">
+                                <strong>@{{ message.user.username }}</strong>
+                                <span class="text-muted small"> • {{ message.created|timesince }} ago</span>
+                            </p>
+                            <p class="mb-2">{{ message.body }}</p>
+
+                            {% if request.user == message.user %}
+                                <form action="{% url 'delete-message-room' message.id %}" method="POST" class="d-inline">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="message_id" value="{{ message.id }}">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    {% empty %}
+                        <p class="text-muted">No messages yet.</p>
+                    {% endfor %}
+                </div>
             </div>
-            {% empty %}
-            <p>No participants yet.</p>
-            {% endfor %}
-        </ul>
-        <hr>
+
+            <!-- Comment Form -->
+            {% if user.is_authenticated %}
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <form method="POST" class="d-flex gap-2">
+                            {% csrf_token %}
+                            <input type="text" name="body" class="form-control" placeholder="Add your message..." required>
+                            <button type="submit" class="btn btn-outline-dark">Send</button>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Right Column: Participants -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="mb-3">Participants</h4>
+                    <ul class="list-group list-group-flush">
+                        {% for participant in participants %}
+                            <li class="list-group-item">@{{ participant.username }}</li>
+                        {% empty %}
+                            <p class="text-muted">No participants yet.</p>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
 {% endblock content %}

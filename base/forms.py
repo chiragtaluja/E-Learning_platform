@@ -23,7 +23,7 @@ class UserForm(ModelForm):
             "email",
             "first_name",
             "last_name",
-        ]  # Add any other fields you want to allow users to
+        ]
 
 
 class CustomRegisterForm(UserCreationForm):
